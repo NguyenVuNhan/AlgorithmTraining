@@ -1,15 +1,24 @@
 # https://www.hackerrank.com/challenges/between-two-sets/problem
 
-import math
-import os
-import random
-import re
 import sys
+import os
+from math import gcd
+from functools import reduce
 
+def lcm(a, b):
+    return (a*b)//gcd(a,b)
 
 def getTotalX(a, b):
-    # Write your code here
+    _lcm = reduce(lcm, a, 1)
+    _gcd = reduce(gcd, b)
+        
+    t_lcm = _lcm
 
+    count = 0
+    for i in range(_lcm, _gcd+_lcm, _lcm):
+        if(_gcd % i) == 0:
+            count += 1
+    return count
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
